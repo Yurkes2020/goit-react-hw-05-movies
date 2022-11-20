@@ -1,16 +1,27 @@
+import { useEffect, useState } from 'react';
+import { fetch } from './Api/Api';
+import { List } from './TrandingList/TrandingList';
+
 export const App = () => {
+  const [movie, setMovie] = useState([]);
+
+  useEffect(() => {
+    fetch().then(({ data }) =>
+      data.results.map(({ title, id, name }) =>
+        setMovie(prevState => [...prevState, { title, id, name }])
+      )
+    );
+  }, []);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <header>
+        <a href="/">Home</a>
+      </header>
+      <div>
+        <p>Tranding today</p>
+        <List tranding={movie} />
+      </div>
     </div>
   );
 };
