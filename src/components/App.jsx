@@ -4,17 +4,25 @@ import { List } from './TrandingList/TrandingList';
 
 export const App = () => {
   const [movie, setMovie] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch().then(({ data }) =>
-      data.results.map(({ title, id, name }) =>
-        setMovie(prevState => [...prevState, { title, id, name }])
-      )
-    );
+    fetchApi();
   }, []);
+
+  const fetchApi = () => {
+    fetch()
+      .then(data =>
+        data.map(({ title, id, name }) =>
+          setMovie(prevState => [...prevState, { title, id, name }])
+        )
+      )
+      .catch(error => setError(error.message));
+  };
 
   return (
     <div>
+      {error && <h1>Помилка! Щось пішло не так</h1>}
       <header>
         <a href="/">Home</a>
       </header>
