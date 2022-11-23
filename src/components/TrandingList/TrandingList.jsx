@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { fetch } from 'components/Api/Api';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export const TrandingMovies = ({ tranding }) => {
+export const TrandingMovies = () => {
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchApi();
   }, []);
+
+  const { productId } = useParams();
 
   const fetchApi = () => {
     fetch()
@@ -25,7 +29,7 @@ export const TrandingMovies = ({ tranding }) => {
       <ul>
         {movie.map(({ title, id, name }) => (
           <li key={id}>
-            <a href="/">{title || name}</a>
+            <Link to="movies/:movieId">{title || name}</Link>
           </li>
         ))}
       </ul>
