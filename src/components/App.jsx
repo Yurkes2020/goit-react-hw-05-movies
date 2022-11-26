@@ -5,6 +5,8 @@ import { Layout } from './Layout';
 import { Movies } from './Movies/Movies';
 import { TrandingMovies } from './TrandingList/TrandingList';
 import { MovieDetails } from './MovieDetails';
+import { Cast } from './Cast';
+import { Reviews } from './Reviews';
 
 export const App = () => {
   const [movie, setMovie] = useState([]);
@@ -30,10 +32,10 @@ export const App = () => {
             element={<TrandingMovies list={movie} error={error} />}
           />
           <Route path="movies" element={<Movies />} />
-          <Route
-            path="movies/:movieId"
-            element={<MovieDetails movies={movie} />}
-          />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />}></Route>
+            <Route path="reviews" element={<Reviews />}></Route>
+          </Route>
         </Route>
       </Routes>
     </>
