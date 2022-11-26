@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { fetchSearch } from 'components/Api/Api';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 export const Movies = () => {
   const [searchMovies, setSearchMovies] = useState('');
   const [movies, setMovies] = useState([]);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const showMovies = e => {
     e.preventDefault();
@@ -31,7 +31,11 @@ export const Movies = () => {
       </form>
       <ul>
         {movies.map(({ title, id }) => {
-          return <li key={id}>{title}</li>;
+          return (
+            <li key={id}>
+              <Link to={`${id}`}>{title}</Link>
+            </li>
+          );
         })}
       </ul>
     </>

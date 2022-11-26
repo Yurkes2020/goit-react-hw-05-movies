@@ -14,7 +14,8 @@ export const MovieDetails = ({ movies }) => {
   return (
     <>
       <div>
-        <button type="button">Go back</button>
+        <Link to="/">Go back</Link>
+
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieById.backdrop_path} `}
           alt=""

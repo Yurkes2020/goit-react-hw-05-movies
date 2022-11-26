@@ -13,16 +13,20 @@ export const Reviews = () => {
 
   return (
     <>
-      <ul>
-        {reviews.map(({ author, content, id }) => {
-          return (
-            <li key={id}>
-              <h3>{author}</h3>
-              <p>{content}</p>
-            </li>
-          );
-        })}
-      </ul>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map(({ author, content, id }) => {
+            return (
+              <li key={id}>
+                <h3>{author}</h3>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Здесь ничего нет</p>
+      )}
     </>
   );
 };

@@ -11,23 +11,24 @@ export const Cast = () => {
 
   return (
     <>
-      <ul>
-        {cast.map(({ name, character, profile_path, id }) => {
-          return (
-            <li key={id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${profile_path} `}
-                alt=""
-              />
-              <p>{name}</p>
-              <p>{character}</p>
-            </li>
-          );
-        })}
-      </ul>
-      <img src="" alt="" />
-      <p></p>
-      <p></p>
+      {cast.length > 0 ? (
+        <ul>
+          {cast.map(({ name, character, profile_path, id }) => {
+            return (
+              <li key={id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${profile_path} `}
+                  alt=""
+                />
+                <p>{name}</p>
+                <p>{character}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Здесь ничего нет</p>
+      )}
     </>
   );
 };
