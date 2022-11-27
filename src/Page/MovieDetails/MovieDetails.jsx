@@ -1,8 +1,8 @@
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { fetchId } from './Api/Api';
+import { useState, useEffect, Suspense } from 'react';
+import { fetchId } from '../../components/Api/Api';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieById, setMovieById] = useState(null);
   const [error, setError] = useState(null);
 
@@ -46,9 +46,13 @@ export const MovieDetails = () => {
               </Link>
             </li>
           </ul>
-          <Outlet></Outlet>
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </div>
       )}
     </>
   );
 };
+
+export default MovieDetails;

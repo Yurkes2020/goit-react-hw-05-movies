@@ -3,7 +3,7 @@ import { fetchCast } from './Api/Api';
 import { useParams } from 'react-router-dom';
 import NoFoto from '../img/NoFoto.jpg';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
@@ -37,3 +37,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;
