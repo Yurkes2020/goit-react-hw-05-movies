@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { fetchCast } from './Api/Api';
 import { useParams } from 'react-router-dom';
+import NoFoto from '../img/NoFoto.jpg';
 
 export const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
-    fetchCast(movieId).then(data => setCast(data));
+    fetchCast(movieId).then(setCast);
   }, [movieId]);
 
   return (
@@ -17,11 +18,15 @@ export const Cast = () => {
             return (
               <li key={id}>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${profile_path} `}
-                  alt=""
+                  src={
+                    profile_path === null || profile_path === undefined
+                      ? NoFoto
+                      : `https://image.tmdb.org/t/p/w500/${profile_path}`
+                  }
+                  alt={name}
                 />
                 <p>{name}</p>
-                <p>{character}</p>
+                <p>Character: {character}</p>
               </li>
             );
           })}

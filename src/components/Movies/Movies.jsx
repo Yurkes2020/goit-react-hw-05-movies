@@ -1,43 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchSearch } from 'components/Api/Api';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 
 export const Movies = () => {
-  const [searchMovies, setSearchMovies] = useState('');
   const [movies, setMovies] = useState([]);
 
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
+  const queryMovie = searchParams.get('query');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!queryMovie) return;
+    fetchSearch(queryMovie).then(setMovies);
+  }, [queryMovie]);
 
   const showMovies = e => {
     e.preventDefault();
-    if (searchMovies.trim() === '') return;
-    fetchSearch(searchMovies).then(data =>
-      data.map(movie => setMovies(prevState => [...prevState, movie]))
-    );
-    setSearchMovies('');
-    setMovies([]);
-  };
-
-  const search = e => {
-    setSearchMovies(e.target.value);
-    setSearchParams(e.target.value !== '' ? { filter: e.target.value } : {});
+    setSearchParams({ query: e.target.elements.name.value });
   };
 
   return (
     <>
       <form onSubmit={showMovies}>
-        <input type="text" onChange={search} value={searchMovies} />
+        <input type="text" name="name" />
         <button type="submit">Search</button>
       </form>
-      <ul>
-        {movies.map(({ title, id }) => {
-          return (
-            <li key={id}>
-              <Link to={`${id}`}>{title}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      {movies.length > 0 && (
+        <ul>
+          {movies.map(({ title, id }) => {
+            return (
+              <li key={id}>
+                <Link to={`${id}`} state={location}>
+                  {title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 };

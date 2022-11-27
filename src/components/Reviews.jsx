@@ -8,7 +8,7 @@ export const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    fetchReviews(movieId).then(data => setReviews(data));
+    fetchReviews(movieId).then(setReviews);
   }, [movieId]);
 
   return (
