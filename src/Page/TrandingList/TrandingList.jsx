@@ -1,6 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetch } from 'components/Api/Api';
+import { List, Movie } from './TrandingList.styled';
 
 export const Home = () => {
   const [movie, setMovie] = useState([]);
@@ -19,15 +20,20 @@ export const Home = () => {
     <main>
       <h1>Tranding today</h1>
       {error && <h1>Помилка! Щось пішло не так</h1>}
-      <ul>
-        {movie.map(({ title, id, name }) => (
+      <List>
+        {movie.map(({ title, id, name, poster_path }) => (
           <li key={id}>
-            <Link to={`movies/${id}`} state={location}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
+              alt={name}
+              height="500px"
+            />
+            <Movie to={`movies/${id}`} state={location}>
               {title || name}
-            </Link>
+            </Movie>
           </li>
         ))}
-      </ul>
+      </List>
     </main>
   );
 };

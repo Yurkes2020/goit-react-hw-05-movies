@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchSearch } from 'components/Api/Api';
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { List } from './Movies.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -26,17 +27,22 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
       {movies.length > 0 && (
-        <ul>
-          {movies.map(({ title, id }) => {
+        <List>
+          {movies.map(({ title, id, poster_path }) => {
             return (
               <li key={id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
+                  alt={title}
+                  height="500px"
+                />
                 <Link to={`${id}`} state={location}>
                   {title}
                 </Link>
               </li>
             );
           })}
-        </ul>
+        </List>
       )}
     </>
   );

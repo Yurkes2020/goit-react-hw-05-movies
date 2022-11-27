@@ -5,7 +5,7 @@ import { Home } from '../Page/TrandingList/TrandingList';
 
 const Movies = lazy(() => import('../Page/Movies/Movies'));
 const MovieDetails = lazy(() => import('../Page/MovieDetails/MovieDetails'));
-const Cast = lazy(() => import('../components/Cast'));
+const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('../components/Reviews'));
 
 export const App = () => {

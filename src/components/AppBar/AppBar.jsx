@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+import { StyledLink, Header } from './AppBar.styled';
 
 export const AppBar = () => {
   return (
-    <header>
+    <Header>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="movies">Movies</Link>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="movies">Movies</StyledLink>
       </nav>
-    </header>
+    </Header>
   );
 };
