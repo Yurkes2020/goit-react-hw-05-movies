@@ -1,6 +1,6 @@
 import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
-import { fetchId } from '../../components/Api/Api';
+import { fetchId } from '../../Api/Api';
 import { Button, Box } from './MovieDetails.styled';
 
 const MovieDetails = () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchCast } from '../Api/Api';
+import { fetchCast } from '../../Api/Api';
 import { useParams } from 'react-router-dom';
 import NoFoto from 'img/NoFoto.jpg';
 import { List } from './Cast.styled';

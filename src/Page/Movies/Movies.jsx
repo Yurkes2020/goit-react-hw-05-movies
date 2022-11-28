@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchSearch } from 'components/Api/Api';
+import { fetchSearch } from 'Api/Api';
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { List } from './Movies.styled';
 
@@ -31,12 +31,12 @@ const Movies = () => {
           {movies.map(({ title, id, poster_path }) => {
             return (
               <li key={id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
-                  alt={title}
-                  height="500px"
-                />
                 <Link to={`${id}`} state={location}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
+                    alt={title}
+                    height="500px"
+                  />
                   {title}
                 </Link>
               </li>

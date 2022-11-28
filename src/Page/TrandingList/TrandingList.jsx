@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetch } from 'components/Api/Api';
+import { fetch } from 'Api/Api';
 import { List, Movie } from './TrandingList.styled';
 
 export const Home = () => {
@@ -23,12 +23,12 @@ export const Home = () => {
       <List>
         {movie.map(({ title, id, name, poster_path }) => (
           <li key={id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
-              alt={name}
-              height="500px"
-            />
             <Movie to={`movies/${id}`} state={location}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${poster_path} `}
+                alt={name}
+                height="500px"
+              />
               {title || name}
             </Movie>
           </li>
